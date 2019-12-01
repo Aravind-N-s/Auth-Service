@@ -1,13 +1,13 @@
 //db configuration
 const mongoose = require('mongoose')
-
+require('dotenv').config()
 //connect express to mongo via mongoose
 //config the promise lib to be ES6 Promise
 mongoose.Promise = global.Promise
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 
-const CONNECTION_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/chatter-bug'
+const CONNECTION_URI = process.env.MONGODB_URI
 
 //connect to db
 mongoose.connect(CONNECTION_URI, { useNewUrlParser: true })

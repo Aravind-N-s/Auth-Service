@@ -1,11 +1,11 @@
 const express = require('express')
 const cors = require('cors')
-const {mongoose} = require('./Config/database')
 const app = express()
+const passport = require('passport')
 const router = require('./Config/routes')
-const { usersRouter } = require('./app/Controller/userController') 
 const http = require('http').createServer(app)
 const io = require('socket.io').listen(http)
+const {mongoose} = require('./Config/database')
 
 //for heroku 
 const path = require("path")
@@ -24,11 +24,14 @@ io.on('connection', (socket) => {
         console.log("Client disconnected"))
 })
 
+app.use(passport.initialize())
+require('./app/Middlewares/passport-local')
+require('./app/Middlewares/passport-jwt')
+
 app.use(express.json())
 app.use(cors())
 
 app.use('/', router)
-app.use('/users',usersRouter)
 
 app.use(express.static(path.join(__dirname,"client/build")))
 

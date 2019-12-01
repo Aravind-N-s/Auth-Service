@@ -1,46 +1,43 @@
-const express = require('express')
-const router = express.Router()
 const _ = require('lodash')
+require('dotenv').config
+const jwt = require('jsonwebtoken')
 const { User } = require('../Model/User')
-const {authenticateUser} = require('../Middlewares/authentication')
 
 //localhost:3005/users/register
-router.post('/register', (req,res) => {
+module.exports.register =   (req,res) => {
     const body = req.body
     const user = new User(body)
     user.save()
-        .then(user => {
-            // res.json(user)
-            res.json(user)
-        })
-        .catch(err =>{
-            res.send(err)
-        })
-})
+    .then(user => {
+        res.json(user)
+    })
+    .catch(err =>{
+        res.send(err)
+    })
+}
 //localhost:3005/users/login
-router.post('/login', (req,res) =>{
-    const body = req.body  
-    User.findByCredentials(body.email, body.password)
-        .then(user => {
-            return user.generateToken()
-        })
-        .then(token =>{
-            // res.setHeader('x-auth',token).send({})
-            res.send({token})
-            res.send(_.pick(user, ['_id','username','email','createdAt']))
-        })
-        .catch(err => {
-            res.send(err)
-        })
-})
+module.exports.login =  (req,res) =>{
+    const user = req.user
+    if(user !== 'error'){
+        const tokenData = {
+            _id:user._id,
+            username: user.username,
+            createdAt: Number(new Date())
+        }
+        const token = jwt.sign(tokenData, process.env.TOKEN_SECRET)
+        res.json({token})
+    }
+    else{
+        res.json('Invalid Email and Password')
+    }  
+}
 //localhost:3005/users/account
-router.get('/account',authenticateUser, (req,res)=>{
+module.exports.account =  (req,res)=>{
     const {user} = req
-    // res.send(user)
     res.send(_.pick(user, ['_id','username','email']))
-})
+}
 //localhost:3005/users/info
-router.get('/info',authenticateUser, (req,res) =>{
+module.exports.info =  (req,res) =>{
     const {user} = req
     User.find()
     .then((users) => {
@@ -52,18 +49,16 @@ router.get('/info',authenticateUser, (req,res) =>{
     .catch((err) => {
         res.send(err)
     })
-})
-//localhost:3005/users/logout
-router.delete('/logout',authenticateUser, (req,res) =>{
-    const { user, token } = req
-    User.findByIdAndUpdate(user._id,{$pull: {tokens: { token: token }}})
-        .then(function(){
-            res.send({notice:'successfully logged out'})
-        })
-        .catch(function(err){
-            res.send(err)
-        })
-})
-module.exports = {
-    usersRouter: router
+}
+
+module.exports.logout =  (req,res) =>{
+    // const { user} = req
+    // User.findByIdAndUpdate(user._id,{$pull: {tokens: { token: token }}})
+    //     .then(function(){
+    //         res.send({notice:'successfully logged out'})
+    //     })
+    //     .catch(function(err){
+    //         res.send(err)
+    //     })
+    res.json('User is logged Out')
 }

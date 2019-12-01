@@ -7,7 +7,7 @@ const ChatSchema = new Schema({
         type: String,
         required: true
     },
-    desc:{
+    description:{
         type: String,
         unique: true,
         required: true,
@@ -18,7 +18,7 @@ const ChatSchema = new Schema({
         ref: 'User',
         required: true
     },
-    twoLevel:[{
+    participantsLevelTwo:[{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
@@ -28,12 +28,6 @@ const ChatSchema = new Schema({
     }
 })
 
-// ChatSchema.pre('save', (next) => {
-//     const chat = this
-//     chat.twoLevel.push(chat.userAdmin)
-//     chat.save()
-//     next()
-// })
 const Chat = mongoose.model('Chat', ChatSchema)
 
 module.exports = Chat
