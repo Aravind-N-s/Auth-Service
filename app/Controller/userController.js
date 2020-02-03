@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken')
 const { User } = require('../Model/User')
 
 //localhost:3005/users/register
-module.exports.register =   (req,res) => {
+module.exports.register =  (req,res) => {
+    console.log(req.body,'data')
     const body = req.body
     const user = new User(body)
     user.save()
@@ -33,6 +34,7 @@ module.exports.login =  (req,res) =>{
 }
 //localhost:3005/users/account
 module.exports.account =  (req,res)=>{
+    console.log(req.body,'body')
     const {user} = req
     res.send(_.pick(user, ['_id','username','email']))
 }

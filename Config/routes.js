@@ -5,12 +5,13 @@ const userController = require('../app/Controller/userController')
 const chatController = require('../app/Controller/chatController')
 
 //user
+router.get('/val', function (req, res) {
+  res.json('Value')
+})
 router.post('/user/register', userController.register)
 router.post('/user/login',passport.authenticate('local',{session:false}),userController.login)
-router.get('/user/account',passport.authenticate('jwt',{session:false},
-{failureRedirect: '/' }), userController.account)
-router.get('/user/info',passport.authenticate('jwt',{session:false},
-{failureRedirect: '/' }), userController.info)
+router.get('/user/account',passport.authenticate('jwt',{session:false}), userController.account)
+router.get('/user/info',passport.authenticate('jwt',{session:false}), userController.info)
 router.delete('/user/logout',passport.authenticate('jwt',{session:false}), userController.logout)
 
 //chat
