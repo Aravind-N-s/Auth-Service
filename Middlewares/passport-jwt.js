@@ -1,6 +1,6 @@
 require('dotenv').config()
 const passport = require('passport')
-const {User} = require('../Model/User')
+const {User} = require('../Models/User')
 const JWTStrategy = require('passport-jwt').Strategy
 const ExtractJWT = require('passport-jwt').ExtractJwt
 const options = {

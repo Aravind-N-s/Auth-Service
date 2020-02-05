@@ -16,7 +16,7 @@ const existingUserData = {
   email: 'email2@gmail.com',
   password: "qwerty1#2"
 };
-
+let newUser
 let newUserToken
 let newUserID
 let existingUserToken
@@ -25,18 +25,18 @@ chai.use(chaiHttp);
 
 before(done => {
   User.create(newUserData,(err, user) =>{
+    newUser = user
     newUserID = user._id
     done();
   })
 })
 
-describe.skip("Test", () =>{
+describe("Test", () =>{
   it("Print Data", done =>{
-    console.log(newUserID,'data')
   })
 })
 
 after(done =>{
-  User.deleteOne({_id: newUserID})
+  User.deleteOne(newUser)
   done()
 })

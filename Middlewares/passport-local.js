@@ -1,5 +1,5 @@
 const passport = require('passport')
-const {User} = require('../Model/User')
+const {User} = require('../Models/User')
 const bcryptjs = require('bcryptjs')
 const options ={
     usernameField: 'email',
