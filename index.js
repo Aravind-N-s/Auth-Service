@@ -12,13 +12,15 @@ const router = require('./config/routes')
 app.use(express.json())
 app.use(cors())
 
-
 app.use(passport.initialize())
 
 require('./middlewares/passport-local')
 
 require('./middlewares/passport-jwt')
 
+app.get('/', (req, res) => {
+    res.send('.Welcome to Auth Services.')
+})
 app.use('/user', router)
 
 app.listen(port ,() =>{
