@@ -1,11 +1,11 @@
 //db configuration
 const mongoose = require('mongoose')
 require('dotenv').config()
-//connect express to mongo via mongoose
-//config the promise lib to be ES6 Promise
+
 mongoose.Promise = global.Promise
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
+mongoose.set('useUnifiedTopology', true)
 
 const CONNECTION_URI = process.env.MONGODB_URI
 

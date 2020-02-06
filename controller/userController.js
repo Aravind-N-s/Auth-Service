@@ -1,24 +1,27 @@
-const _ = require('lodash')
 require('dotenv').config
+const _ = require('lodash')
 const jwt = require('jsonwebtoken')
-const { User } = require('../Models/User')
-
+const { User } = require('../models/user')
+const HttpStatus = require("http-status-codes");
 //localhost:3005/users/register
 module.exports.register =  (req,res) => {
     const body = req.body
     const user = new User(body)
     user.save()
     .then(user => {
-        res.json(user)
+        return res
+            .status(HttpStatus.OK)
+            .json({user, message:"User Successfully Registered."})
     })
     .catch(err =>{
-        res.send(err)
+        return res
+            .status(HttpStatus.NOT_ACCEPTABLE)
+            .json({err, message: "User Wasn't Successfully Registered."})
     })
 }
 
 //localhost:3005/users/login
 module.exports.login =  (req,res) =>{
-    console.log(req.body,'req')
     const user = req.user
     if(user !== 'error'){
         const tokenData = {
@@ -27,10 +30,14 @@ module.exports.login =  (req,res) =>{
             createdAt: Number(new Date())
         }
         const token = jwt.sign(tokenData, process.env.TOKEN_SECRET)
-        res.json({token})
+        return res
+            .status(HttpStatus.OK)
+            .json({token, message:"User Details Listed."})
     }
     else{
-        res.json('Invalid Email and Password')
+        return res
+        .status(HttpStatus.NOT_ACCEPTABLE)
+        .json({err, message: "Please Try Again."})
     }  
 }
 

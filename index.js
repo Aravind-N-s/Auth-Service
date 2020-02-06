@@ -1,22 +1,25 @@
 require('dotenv').config()
+const {mongoose} = require('./config/database')
+const port = process.env.PORT
 const express = require('express')
+
 const cors = require('cors')
 const app = express()
 const passport = require('passport')
-const router = require('./Config/routes')
 
-const port = process.env.PORT
-
-app.use(passport.initialize())
-
-require('./Middlewares/passport-local')
-require('./Middlewares/passport-jwt')
+const router = require('./config/routes')
 
 app.use(express.json())
 app.use(cors())
 
-app.use('/user', router)
 
+app.use(passport.initialize())
+
+require('./middlewares/passport-local')
+
+require('./middlewares/passport-jwt')
+
+app.use('/user', router)
 
 app.listen(port ,() =>{
     console.log('Listening on port', port)
