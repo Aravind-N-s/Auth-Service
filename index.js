@@ -3,7 +3,7 @@ const {mongoose} = require('./config/database')
 const port = process.env.PORT
 const express = require('express')
 const {consoleLogger} = require('./config/logger')
-
+const HttpStatus = require("http-status-codes");
 const cors = require('cors')
 const app = express()
 const passport = require('passport')
