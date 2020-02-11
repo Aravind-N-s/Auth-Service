@@ -2,6 +2,7 @@ require('dotenv').config()
 const {mongoose} = require('./config/database')
 const port = process.env.PORT
 const express = require('express')
+const {consoleLogger} = require('./config/logger')
 
 const cors = require('cors')
 const app = express()
@@ -19,10 +20,13 @@ require('./middlewares/passport-local')
 require('./middlewares/passport-jwt')
 
 app.get('/', (req, res) => {
-    res.send('.Welcome to Auth Services.')
+    return res
+    .status(HttpStatus.OK)
+    .json({message: ".AuthServices is active."});
 })
+
 app.use('/user', router)
 
 app.listen(port ,() =>{
-    console.log('Listening on port', port)
+    consoleLogger.info('Listening on port', port)
 })

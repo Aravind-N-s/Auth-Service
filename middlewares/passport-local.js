@@ -1,5 +1,5 @@
 const passport = require('passport')
-const {User} = require('../models/user')
+const {User} = require('../models')
 const bcryptjs = require('bcryptjs')
 const options ={
     usernameField: 'email',
@@ -16,7 +16,6 @@ passport.use(new LocalStrategy(options,(email, password, done) => {
         bcryptjs.compare(password, user.password)
         .then(result => {
             if (result) {return done(null, user)}
-            consoele.log(result,'passport')
             done()
         })
         .catch(err => {return done(err)})

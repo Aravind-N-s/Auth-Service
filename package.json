@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@log4js-node/logstash-http": "^1.0.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "^4.1.2",
     "cors": "^2.8.5",
@@ -24,7 +25,9 @@
     "http-status-codes": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
+    "log4js": "^6.1.2",
     "mongoose": "^5.8.11",
+    "mongoose-unique-validator": "^2.0.3",
     "nodemailer": "^6.4.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
