@@ -11,7 +11,7 @@
  * @const
  */
 const log4js = require("log4js");
-require('dotenv').config()
+require("dotenv").config();
 /**
  * Log4js Configuration Options
  * @name configure
@@ -29,12 +29,12 @@ log4js.configure({
     /**
      * Logstash Appender
      */
-    logstash: {
-      type: "@log4js-node/logstash-http",
-      url: process.env.ELASTIC_LOGSTASH_URL,
-      application: "test",
-      logType: "application"
-    },
+    // logstash: {
+    //   type: "@log4js-node/logstash-http",
+    //   url: process.env.ELASTIC_LOGSTASH_URL,
+    //   application: "test",
+    //   logType: "application"
+    // },
 
     /**
      * Console Appender
@@ -43,8 +43,8 @@ log4js.configure({
       type: "stdout",
       layout: {
         type: "pattern",
-        pattern: "%z %d{yyyy-MM-dd hh:mm:ss.SSS} %p %c %m"
-      }
+        pattern: "%z %d{yyyy-MM-dd hh:mm:ss.SSS} %p %c %m",
+      },
     },
 
     /**
@@ -54,7 +54,7 @@ log4js.configure({
       type: "file",
       filename: `log-auth-performance.log`,
       maxLogSize: 10485760,
-      compress: true
+      compress: true,
     },
     /**
      * Crash Appender
@@ -63,14 +63,14 @@ log4js.configure({
       type: "file",
       filename: `log-auth-crash.log`,
       maxLogSize: 10485760,
-      compress: true
-    }
+      compress: true,
+    },
   },
   categories: {
-    default: { appenders: ["file", "logstash"], level: "info" },
-    crash: { appenders: ["crash", "logstash"], level: "warn" },
-    console: { appenders: ["console"], level: "info" }
-  }
+    default: { appenders: ["file"], level: "info" },
+    crash: { appenders: ["crash"], level: "warn" },
+    console: { appenders: ["console"], level: "info" },
+  },
 });
 
 /**
@@ -82,7 +82,7 @@ const logger = log4js.getLogger();
  * Crash logger
  * @const
  */
-const crashLogger = log4js.getLogger('crash')
+const crashLogger = log4js.getLogger("crash");
 /**
  * Console Logger
  * @const

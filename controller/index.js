@@ -29,6 +29,7 @@ module.exports.register = async (req, res) => {
 module.exports.login = (req, res) => {
   logger.addContext('route',req.route.path);
   const {user} = req;
+  console.log(user)
   if (user !== "error") {
     const tokenData = {
       _id: user._id,
@@ -41,10 +42,10 @@ module.exports.login = (req, res) => {
       .status(HttpStatus.OK)
       .json({ token, message: "User Details Listed." });
   } else {
-    logger.error(`-${err} errors are existed-`);
+    logger.error(`-errors are existed-`);
     return res
       .status(HttpStatus.NOT_ACCEPTABLE)
-      .json({ err, message: "Please Try Again." });
+      .json({ message: "Please Try Again." });
   }
 };
 
