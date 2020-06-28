@@ -7,4 +7,4 @@ before_install:
   - docker build -t aghora/auth-service .
 
 script:
-  - docker run -e CI=true aghora/auth-service npm run test -- --coverage
+  - docker run -e CI=true aghora/auth-service npm run test
