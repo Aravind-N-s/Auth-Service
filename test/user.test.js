@@ -6,7 +6,7 @@ const server = require("../index");
 const should = chai.should();
 chai.use(chaiHttp);
 
-describe("Test", () => {
+describe("Testing Travis", () => {
   it("Print Data", (done) => {
     chai
       .request(server)
