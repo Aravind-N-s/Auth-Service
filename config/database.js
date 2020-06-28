@@ -13,7 +13,7 @@ const CONNECTION_URI = process.env.MONGODB_URI;
 mongoose
   .connect(CONNECTION_URI, { useNewUrlParser: true })
   .then(() => {
-    consoleLogger.info("Connected to the DB");
+    consoleLogger.info("Connected to the DB", CONNECTION_URI);
   })
   .catch((err) => {
     consoleLogger.fatal("ERROR connected to DB", err);
