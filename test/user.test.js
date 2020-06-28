@@ -1,42 +1,43 @@
 const mongoose = require("mongoose");
-const {User} = require('../app/Model/User')
+const { User } = require("../app/Model/User");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const server = require("../index");
 const should = chai.should();
 
 const newUserData = {
-  username:"New User 1",
-  email:"email1@gmail.com",
-  password: "qwerty1@3"
+  username: "New User 1",
+  email: "email1@gmail.com",
+  password: "qwerty1@3",
 };
 
 const existingUserData = {
   username: "Existing User 1",
-  email: 'email2@gmail.com',
-  password: "qwerty1#2"
+  email: "email2@gmail.com",
+  password: "qwerty1#2",
 };
-let newUser
-let newUserToken
-let newUserID
-let existingUserToken
-let existingUserID
+let newUser;
+let newUserToken;
+let newUserID;
+let existingUserToken;
+let existingUserID;
 chai.use(chaiHttp);
 
-before(done => {
-  User.create(newUserData,(err, user) =>{
-    newUser = user
-    newUserID = user._id
-    done();
-  })
-})
+// before(done => {
+//   User.create(newUserData,(err, user) =>{
+//     newUser = user
+//     newUserID = user._id
+//     done();
+//   })
+// })
 
-describe("Test", () =>{
-  it("Print Data", done =>{
-  })
-})
+describe("Test", () => {
+  it("Print Data", (done) => {
+    process.exitCode(0);
+  });
+});
 
-after(done =>{
-  User.deleteOne(newUser)
-  done()
-})
+// after(done =>{
+//   User.deleteOne(newUser)
+//   done()
+// })
