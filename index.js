@@ -30,3 +30,5 @@ app.use("/user", router);
 app.listen(port, () => {
   consoleLogger.info("Listening on port", port);
 });
+
+module.exports = app;

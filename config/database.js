@@ -10,8 +10,6 @@ mongoose.set("useUnifiedTopology", true);
 
 const CONNECTION_URI = process.env.MONGODB_URI;
 
-// const CONNECTION_URI = "mongodb://localhost:27017/auth-service";
-
 mongoose
   .connect(CONNECTION_URI, { useNewUrlParser: true })
   .then(() => {
