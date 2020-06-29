@@ -18,6 +18,6 @@ describe("Testing Travis", () => {
     //       .property("message")
     //       .eql(".AuthServices is active.");
     //   });
-    // done();
+    done();
   });
 });
