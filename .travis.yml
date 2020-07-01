@@ -9,7 +9,7 @@ cache:
     - "node_modules"
 before_install:
   - sudo apt-get install mongodb-clients
-  - sleep 15
+  - sudo systemctl status mongod
   - docker build -t aghora/auth-service .
 script:
   - docker run -e CI=true aghora/auth-service npm run test
