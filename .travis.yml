@@ -1,11 +1,11 @@
 language: bash
 sudo: required
 services:
-  - docker
   - mongodb
+  - docker
 before_install:
   - sudo apt-get install mongodb-clients
-  - sudo service mongodb-clients start
+  - sudo service mongodb start
   - sleep 15
   - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
   - docker build -t aghora/auth-service .
