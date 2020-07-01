@@ -4,8 +4,8 @@ services:
   - docker
   - mongodb
 before_install:
-  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
   - sleep 15
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
   - docker build -t aghora/auth-service .
 script:
   - docker run -e CI=true aghora/auth-service npm run test
