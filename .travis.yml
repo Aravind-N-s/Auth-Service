@@ -4,7 +4,8 @@ services:
   - docker
   - mongodb
 before_install:
-  - sleep 15
+  - sudo apt-get --purge remove mongodb-10gen
+  - sudo apt-get install mongodb-clients mongodb-dev mongodb-server
   - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
   - docker build -t aghora/auth-service .
 script:
