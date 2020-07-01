@@ -3,6 +3,9 @@ sudo: required
 services:
   - mongodb
   - docker
+cache:
+  directories:
+    - "node_modules"
 before_install:
   - sudo apt-get install mongodb-clients
   - sleep 15
