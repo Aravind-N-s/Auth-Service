@@ -1,5 +1,6 @@
-language: bash
 sudo: required
+node_js:
+  - 10
 services:
   - mongodb
   - docker
