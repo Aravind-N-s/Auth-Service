@@ -2,7 +2,6 @@ sudo: required
 node_js:
   - 10
 services:
-  - mongodb
   - docker
 cache:
   directories:
@@ -12,5 +11,7 @@ addons:
   apt:
     packages:
       - docker-ce
+before_script:
+  - docker-compose -f docker-compose.env.yml build --parallel
 script:
   - docker-compose -f docker-compose.env.yml up
