@@ -7,9 +7,10 @@ services:
 cache:
   directories:
     - "node_modules"
-before_install:
-  - sudo apt-get install mongodb-clients
-  - sudo systemctl status mongod
-  - docker build -t aghora/auth-service .
+  yarn: true
+addons:
+  apt:
+    packages:
+      - docker-ce
 script:
-  - docker run -e CI=true aghora/auth-service npm run test
+  - docker-compose -f docker-compose.env.yml up
