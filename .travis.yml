@@ -15,7 +15,8 @@ addons:
     packages:
       - docker-ce
 before_install:
-  - sudo systemctl start mongodb
+  - sudo systemctl status mongod
+  - sudo systemctl start mongod
   - docker build -t aghora/auth-service .
 script:
   - docker run -e TOKEN_SECRET=$TOKEN_SECRET -e PORT=$PORT -e MONGO_URI=$MONGO_URI aghora/auth-service npm run test
