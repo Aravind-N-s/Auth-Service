@@ -17,7 +17,7 @@ addons:
 before_install:
   - docker build -t aghora/auth-service .
 script:
-  - docker run -e TOKEN_SECRET=$TOKEN_SECRET -e PORT=$PORT -p 27017:27017 aghora/auth-service npm run test
+  - docker run -e TOKEN_SECRET=$TOKEN_SECRET -e PORT=$PORT aghora/auth-service npm run test
 # env:
 #   global:
 #     - TOKEN_SECRET=QWERTY2#4 PORT=3005
