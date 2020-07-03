@@ -8,7 +8,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 
-const CONNECTION_URI = "mongodb://localhost:27017/auth-service";
+const CONNECTION_URI = process.env.MONGO_URI;
 
 mongoose
   .connect(CONNECTION_URI, { useNewUrlParser: true })
