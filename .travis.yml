@@ -1,13 +1,15 @@
-sudo: required
+os: ubuntu
+language: node_js
+dist: xenial
 node_js:
   - 10
 services:
-  - docker
   - mongodb
+  - docker
 cache:
   directories:
     - "node_modules"
-  yarn: true
+  npm: true
 addons:
   apt:
     packages:
