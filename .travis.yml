@@ -16,6 +16,6 @@ before_install:
   - docker build -t aghora/auth-service .
 script:
   - docker run aghora/auth-service npm run test
-# env:
-#   - TOKEN_SECRET=$TOKEN_SECRET
-#   - BACK_URI=mongo
+env:
+  global:
+    - TOKEN_SECRET=QWERTY2#4 PORT=3005
