@@ -3,6 +3,7 @@ node_js:
   - 10
 services:
   - docker
+  - mongo
 cache:
   directories:
     - "node_modules"
@@ -16,4 +17,5 @@ before_install:
 script:
   - docker run -e CI=true aghora/auth-service npm run test
 env:
-  - TOKEN_SECRET: $TOKEN_SECRET
+  - TOKEN_SECRET=$TOKEN_SECRET
+  - BACK_URI=mongo
