@@ -11,7 +11,7 @@ addons:
   apt:
     packages:
       - docker-ce
-before_script:
-  - docker-compose -f docker-compose.env.yml build --parallel
+before_install:
+  - docker build -t aghora/auth-service .
 script:
-  - docker-compose -f docker-compose.env.yml up
+  - docker run -e CI=true aghora/auth-service npm run test
