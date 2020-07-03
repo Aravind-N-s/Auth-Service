@@ -1,10 +1,10 @@
-os: ubuntu
+os: linux
 language: node_js
 dist: xenial
 node_js:
   - 10
 services:
-  - mongo
+  - mongodb
   - docker
 cache:
   directories:

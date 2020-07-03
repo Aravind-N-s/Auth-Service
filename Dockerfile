@@ -11,5 +11,5 @@ COPY . .
 
 CMD if ["$NODE_ENV" = 'development']; \
     then npm run dev; \
-    else npm start; \
+    else npm run test; \
     fi
