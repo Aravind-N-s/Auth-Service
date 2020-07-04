@@ -3,7 +3,7 @@ services:
   db:
     image: "mongo"
     restart: always
-    container_name: "authService"
+    container_name: "mydb_test"
     ports:
       - 27017:27017
   authservice:
@@ -17,4 +17,8 @@ services:
       - db
     environment:
       - NODE_ENV=development
-    env_file: .env
+    .env:
+      - PORT=$PORT
+      - TOKEN_SECRET=$TOKEN_SECRET
+      - MONGO_URI=$MONGO_URI
+    command: npm run test

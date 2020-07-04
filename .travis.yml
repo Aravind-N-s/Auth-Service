@@ -4,7 +4,7 @@ dist: xenial
 node_js:
   - 10
 services:
-  - mongodb
+  # - mongodb
   - docker
 cache:
   directories:
@@ -15,11 +15,10 @@ addons:
     packages:
       - docker-ce
 before_install:
-  - sudo systemctl status mongod
-  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
-  - docker build -t aghora/auth-service .
-script:
-  - docker run -e TOKEN_SECRET=$TOKEN_SECRET -e PORT=$PORT -e MONGO_URI=$MONGO_URI aghora/auth-service npm run test
+  # - sudo systemctl status mongod
+  # - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
+  docker-compose -f docker-compose.test.yml build
+script: docker-compose -f docker-compose.test.yml up
 # env:
 #   global:
 #     - TOKEN_SECRET=QWERTY2#4 PORT=3005
