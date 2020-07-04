@@ -4,7 +4,7 @@ dist: xenial
 node_js:
   - 10
 services:
-  # - mongodb
+  - mongodb
   - docker
 cache:
   directories:
@@ -15,10 +15,10 @@ addons:
     packages:
       - docker-ce
 before_install:
-  # - sudo systemctl status mongod
+  - sudo systemctl status mongod
   # - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
-  docker-compose -f docker-compose.test.yml build
-script: docker-compose -f docker-compose.test.yml up
+  - docker-compose -f docker-compose.test.yml build
+script: npm run test
 # env:
 #   global:
 #     - TOKEN_SECRET=QWERTY2#4 PORT=3005
