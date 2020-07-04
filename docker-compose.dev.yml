@@ -6,6 +6,8 @@ services:
     container_name: "mongo"
     ports:
       - 27017:27017
+    logging:
+      driver: "none"
   authservice:
     build: .
     container_name: "auth_service"

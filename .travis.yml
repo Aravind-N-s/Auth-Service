@@ -16,5 +16,5 @@ addons:
       - docker-ce
 before_install:
   - sudo systemctl status mongod
-  - docker-compose -f docker-compose.dev.yml build
+  - docker-compose build
 script: npm run test

@@ -3,9 +3,11 @@ services:
   db:
     image: "mongo"
     restart: always
-    container_name: "prod"
+    container_name: "mongo"
     ports:
       - 27017:27017
+    logging:
+      driver: "none"
   authservice:
     build: .
     container_name: "auth_service"
@@ -18,4 +20,7 @@ services:
       - db
     environment:
       - NODE_ENV=development
-    env_file: .env.prod
+      - PORT=$PORT
+      - TOKEN_SECRET=$TOKEN_SECRET
+      - MONGO_URI=$DOCKER_URI
+    # env_file: .env.prod
