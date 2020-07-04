@@ -3,15 +3,19 @@ services:
   db:
     image: "mongo"
     restart: always
-    container_name: "authServiceMongo"
-    env_file: .env.prod
+    container_name: "prod"
+    ports:
+      - 27017:27017
   authservice:
     build: .
+    container_name: "auth_service"
     ports:
-      - 8080:3006
+      - 8080:3005
     volumes:
       - "/home/authService/node_modules"
       - ".:/home/authService"
+    links:
+      - db
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
     env_file: .env.prod
