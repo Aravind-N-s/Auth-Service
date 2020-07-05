@@ -10,7 +10,6 @@ services:
       driver: "none"
   authservice:
     build: .
-    container_name: "auth_service"
     ports:
       - 8080:3005
     volumes:
