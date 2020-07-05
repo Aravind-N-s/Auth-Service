@@ -22,4 +22,4 @@ services:
       - PORT=$PORT
       - TOKEN_SECRET=$TOKEN_SECRET
       - MONGO_URI=$MONGO_URI
-    command: npm run test
+    command: npm run test --exit
