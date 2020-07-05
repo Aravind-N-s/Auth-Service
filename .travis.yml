@@ -16,6 +16,5 @@ addons:
       - docker-ce
 before_install:
   - sudo systemctl status mongod
-  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
-  - docker-compose build
-script: npm run test -- --exit
+  - docker-compose up
+script: docker-compose -f docker-compose.test.yml up --build -- --coverage
