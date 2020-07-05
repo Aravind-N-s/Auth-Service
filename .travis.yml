@@ -17,4 +17,4 @@ addons:
 before_install:
   # - sudo systemctl status mongod
   - docker-compose up
-script: docker-compose -f docker-compose.test.yml up --build -- --coverage
+script: docker-compose -f docker-compose.test.yml up --build
