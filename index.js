@@ -22,7 +22,7 @@ require("./middlewares/passport-jwt");
 app.get("/", (req, res) => {
   return res
     .status(HttpStatus.OK)
-    .json({ message: ".AuthServices is active." });
+    .json({ message: ".AuthServices is active!." });
 });
 
 app.use("/user", router);

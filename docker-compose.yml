@@ -1,13 +1,13 @@
 version: "3"
 services:
   db:
-    image: "mongo"
-    restart: always
-    container_name: "mongo"
-    ports:
-      - 27017:27017
-    logging:
-      driver: "none"
+  # image: "mongo"
+  # restart: always
+  # container_name: "mongo"
+  # ports:
+  #   - 27017:27017
+  # logging:
+  #   driver: "none"
   authservice:
     build: .
     ports:
@@ -15,8 +15,8 @@ services:
     volumes:
       - "/home/authService/node_modules"
       - ".:/home/authService"
-    links:
-      - db
+    # links:
+    #   - db
     environment:
       - NODE_ENV=development
       - PORT=$PORT
