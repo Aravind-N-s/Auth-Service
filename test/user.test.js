@@ -16,7 +16,7 @@ describe("Testing Travis", () => {
         res.body.should.be.a("object");
         res.body.should.have
           .property("message")
-          .eql(".AuthServices is active.");
+          .eql(".AuthServices is active!.");
       });
     done();
   });
