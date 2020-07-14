@@ -1,15 +1,15 @@
 version: "3"
 services:
-  db:
-    image: "mongo"
-    restart: always
-    container_name: "mongo"
-    ports:
-      - 27017:27017
-    logging:
-      driver: "none"
-    volumes:
-      - /home/docker/mongod:/var/lib/mongod
+  # db:
+  #   image: "mongo"
+  #   restart: always
+  #   container_name: "mongo"
+  #   ports:
+  #     - 27017:27017
+  #   logging:
+  #     driver: "none"
+  #   volumes:
+  #     - /home/docker/mongod:/var/lib/mongod
   authservice:
     build: .
     ports:
@@ -17,11 +17,11 @@ services:
     volumes:
       - "/home/authService/node_modules"
       - ".:/home/authService"
-    links:
-      - db
+    # links:
+    #   - db
     environment:
-    - NODE_ENV=development
-    - PORT=$PORT
-    - TOKEN_SECRET=$TOKEN_SECRET
-    - MONGO_URI=$DOCKER_URI
-    env_file: .env.prod
+      - NODE_ENV=development
+      - PORT=$PORT
+      - TOKEN_SECRET=$TOKEN_SECRET
+      - MONGO_URI=$DOCKER_URI
+    # env_file: .env.prod
