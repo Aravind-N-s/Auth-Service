@@ -8,6 +8,8 @@ services:
       - 27017:27017
     logging:
       driver: "none"
+    volumes:
+      - /home/docker/mongod:/var/lib/mongod
   auth-dev:
     build: .
     ports:
