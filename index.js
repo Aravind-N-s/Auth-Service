@@ -1,14 +1,14 @@
 require("dotenv").config();
-const { mongoose } = require("./config/database");
+const { mongoose } = require("./utils/database");
 const port = process.env.PORT;
 const express = require("express");
-const { consoleLogger } = require("./config/logger");
+const { consoleLogger } = require("./utils/logger");
 const HttpStatus = require("http-status-codes");
 const cors = require("cors");
 const app = express();
 const passport = require("passport");
 
-const router = require("./config/routes");
+const router = require("./utils/routes");
 
 app.use(express.json());
 app.use(cors());

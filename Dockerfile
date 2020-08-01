@@ -1,5 +1,5 @@
 # Specify Base Image
-FROM node:alpine
+FROM node:slim
 
 WORKDIR '/home/authService'
 
