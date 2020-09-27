@@ -21,8 +21,7 @@ jobs:
       apt:
         packages:
           - docker-ce
-    before_install:t
-    
+    before_install:
       - docker-compose build
     branches:
       only:
