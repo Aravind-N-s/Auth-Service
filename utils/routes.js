@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const { routes } = require("..");
 const userController = require("../controller");
 const testController = require("../controller/testController");
 
-routes.get("/test/service", testController.test);
+router.get("/test/service", testController.test);
 //user
 router.post("/register", userController.register);
 router.post(
