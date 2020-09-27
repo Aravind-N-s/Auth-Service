@@ -24,7 +24,7 @@ module.exports = {
       emailVerifyTemplate(email, otp);
       await User.findByIdAndUpdate(
         { _id },
-        { $set: { otp, resetRequest: true } }
+        { $set: { otp, resetRequest: true } },
       );
       return true;
     }

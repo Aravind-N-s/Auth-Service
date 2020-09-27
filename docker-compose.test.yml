@@ -15,8 +15,8 @@ services:
     ports:
       - 8080:3005
     volumes:
-      - "/home/authService/node_modules"
-      - ".:/home/authService"
+      - /home/authService/node_modules
+      - .:/home/authService
     links:
       - db
     environment:
