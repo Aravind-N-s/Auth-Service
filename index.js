@@ -2,7 +2,6 @@ require("dotenv").config();
 const port = process.env.PORT;
 const express = require("express");
 const { consoleLogger } = require("./utils/logger");
-const HttpStatus = require("http-status-codes");
 const cors = require("cors");
 const app = express();
 const passport = require("passport");
@@ -17,12 +16,6 @@ app.use(passport.initialize());
 require("./middlewares/passport-local");
 
 require("./middlewares/passport-jwt");
-
-app.get("/", (req, res) => {
-  return res
-    .status(HttpStatus.OK)
-    .json({ message: ".AuthServices is active!." });
-});
 
 app.use("/user", router);
 

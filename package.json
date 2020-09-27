@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "inspect": "nodemon --inspect index",
-    "test": "mocha ---timeout 1000",
+    "test": "mocha --exit",
     "lint": "eslint --ext .json --ext .js --fix --ignore-path .eslintignore ."
   },
   "husky": {

@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const userController = require("../controller");
+const testController = require("../controller/testController");
 
+router.get("/test/service", testController.test);
 //user
 router.post("/register", userController.register);
 router.post(
