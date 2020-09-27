@@ -28,7 +28,9 @@ jobs:
       only:
         - master
     script: npm run test
-    deploy:
-      provider: heroku
-      api_key: $HEROKU_API
-      app: auth-services-aden
+deploy:
+  provider: heroku
+  api_key: $HEROKU_API
+  app: auth-services-aden
+  on:
+    branch: master
