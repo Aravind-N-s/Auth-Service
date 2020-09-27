@@ -13,23 +13,22 @@ jobs:
       except:
         - master
     script: npm run lint
-  - if: commit
-    services:
-      - mongodb
-      - docker
-    addons:
-      apt:
-        packages:
-          - docker-ce
-    before_install:
-      - docker-compose build
-    branches:
-      only:
-        - master
-    script: npm run test
-    deploy:
-      app: auth-services-aden
-      provider: heroku
-      api_key: $HEROKU_API
-      on:
-        branch: master
+  services:
+    - mongodb
+    - docker
+  addons:
+    apt:
+      packages:
+        - docker-ce
+  before_install:
+    - docker-compose build
+  branches:
+    only:
+      - master
+  script: npm run test
+  deploy:
+    app: auth-services-aden
+    provider: heroku
+    api_key: $HEROKU_API
+    on:
+      branch: master
