@@ -1,5 +1,4 @@
 require("dotenv").config;
-const moment = require("moment");
 const _ = require("lodash");
 const { User } = require("../models");
 const HttpStatus = require("http-status-codes");
@@ -18,7 +17,7 @@ module.exports = {
     logger("context", path);
     const otp = await otpHelper("login");
     try {
-      const { _id, email, createdAt } = await User.create({ ...body, otp });
+      const { _id, email } = await User.create({ ...body, otp });
       const payload = { _id, email, createdAt: Date.now() };
       await emailVerifyTemplate(email, otp);
       const token = await encodeToken(payload);

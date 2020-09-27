@@ -1,0 +1,25 @@
+
+##
+# Globbing patterns and guidelines to match against file names or directories:
+#
+# - Prepending a slash (/) matches files only in the repository root
+# - Prepend a pattern with a double asterisk (**) to match directories anywhere in the repository
+# - An asterisk is a wildcard that matches zero or more characters.
+#
+# Good set of glob rules explained here -- https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+##
+
+# Note: /node_modules/* and /bower_components/* in the project root are ignored by default
+
+# Specific files to ignore
+!.eslintrc.js
+
+# Generic directories to ignore
+/build/**
+/coverage/**
+/docs/**
+
+# Project specific directories to ignore
+/internals/**
+/app/translations/**
+/package-lock.json

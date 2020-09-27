@@ -1,5 +1,4 @@
 require("dotenv").config();
-const { mongoose } = require("./utils/database");
 const port = process.env.PORT;
 const express = require("express");
 const { consoleLogger } = require("./utils/logger");
