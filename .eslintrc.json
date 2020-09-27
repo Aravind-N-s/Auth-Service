@@ -1,0 +1,29 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "jest": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "prettier",
+        "prettier/babel","plugin:json/recommended"],
+  "plugins": ["prettier","json"],
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "rules": {
+        "prettier/prettier": [
+            2,
+            {
+              "printWidth": 80,
+              "doubleQuote": true,
+              "trailingComma": "all",
+              "endOfLine": "lf"
+            }
+          ],
+          "linebreak-style": ["error", "unix"],
+          "no-console": 1
+        }
+}

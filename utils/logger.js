@@ -24,6 +24,9 @@ require("dotenv").config();
  * @property {Object} fileConfig - File Appender
  * @property {Object} fileConfig - Crash Appender
  */
+
+console.log("Logger saved disabled");
+
 log4js.configure({
   appenders: {
     /**
@@ -66,9 +69,14 @@ log4js.configure({
       compress: true,
     },
   },
+  // categories: {
+  //   default: { appenders: ["file", "logstash"], level: "info" },
+  //   crash: { appenders: ["crash", "logstash"], level: "warn" },
+  //   console: { appenders: ["console"], level: "info" },
+  // },
   categories: {
     default: { appenders: ["file"], level: "info" },
-    crash: { appenders: ["crash"], level: "warn" },
+    crash: { appenders: ["crash"], level: "debug" },
     console: { appenders: ["console"], level: "info" },
   },
 });
