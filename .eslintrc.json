@@ -1,14 +1,14 @@
 {
     "env": {
-        "es2021": true,
+        "es6": true,
         "node": true,
         "jest": true
     },
     "extends": [
         "eslint:recommended",
         "prettier",
-        "prettier/babel"],
-  "plugins": ["prettier"],
+        "prettier/babel","plugin:json/recommended"],
+  "plugins": ["prettier","json"],
     "parserOptions": {
         "ecmaVersion": 12,
         "sourceType": "module"
@@ -24,6 +24,6 @@
             }
           ],
           "linebreak-style": ["error", "unix"],
-          "no-console": 2
+          "no-console": 1
         }
 }
