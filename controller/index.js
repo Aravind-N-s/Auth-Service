@@ -1,5 +1,4 @@
 require("dotenv").config;
-const moment = require("moment");
 const _ = require("lodash");
 const { User } = require("../models");
 const HttpStatus = require("http-status-codes");
@@ -18,7 +17,7 @@ module.exports = {
     logger("context", path);
     const otp = await otpHelper("login");
     try {
-      const { _id, email, createdAt } = await User.create({ ...body, otp });
+      const { _id, email } = await User.create({ ...body, otp });
       const payload = { _id, email, createdAt: Date.now() };
       await emailVerifyTemplate(email, otp);
       const token = await encodeToken(payload);
@@ -60,7 +59,7 @@ module.exports = {
       const user = await User.findByIdAndUpdate(
         { _id },
         { $set: { ...body } },
-        { new: true, runValidators: true }
+        { new: true, runValidators: true },
       );
       const users = _.pick(user, [
         "_id",
@@ -86,7 +85,7 @@ module.exports = {
       route: { path },
       body: { otpVerify },
     },
-    res
+    res,
   ) {
     logger("context", path);
     const token = await encodeToken({
@@ -105,7 +104,7 @@ module.exports = {
         await User.findByIdAndUpdate(
           { _id },
           { $set: { isVerified: true } },
-          { new: true, runValidators: true }
+          { new: true, runValidators: true },
         );
         logger("info", `- ${token}, has verified his account -`);
         return res
@@ -124,7 +123,7 @@ module.exports = {
 
   async resetPassword(
     { body: { email, otpVerify, password }, route: { path } },
-    res
+    res,
   ) {
     logger("context", path);
     const user = await User.findOne({ email });
@@ -152,7 +151,7 @@ module.exports = {
       await User.findByIdAndUpdate(
         { _id },
         { $set: { resetPassword: false, password: hashPassword } },
-        { new: true, runValidators: true }
+        { new: true, runValidators: true },
       );
       logger("info", `Password was successfully resetted`);
       return res

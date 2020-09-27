@@ -27,5 +27,5 @@ passport.use(
           return done(err);
         });
     });
-  })
+  }),
 );
