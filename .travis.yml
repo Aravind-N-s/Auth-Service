@@ -8,27 +8,34 @@ cache:
     - "node_modules"
   npm: true
 jobs:
-  - if: pull_request
-    branches:
-      except:
-        - master
-    script: npm run lint
-  - if: merge && branch = master
-    services:
-      - mongodb
-      - docker
-    addons:
-      apt:
-        packages:
-          - docker-ce
-    before_install:
-      - sudo systemctl status mongod
-      - docker-compose build
-    branches:
-      only:
-        - master
-    script: npm run test -- --exit
-    deploy:
-      provider: heroku
-      api_key: $HEROKU_API
-      app: auth-services-aden
+  include:
+    - stage: lint
+      script:
+        - npm run lint
+    - stage: test
+      script:
+       - npm run test -- --exit
+    - stage: deploy
+      script:
+        - services:
+          - mongodb
+          - docker
+        - addons:
+          apt:
+            packages:
+              - docker-ce
+        - npm run test -- --exit
+      - deploy:
+          provider: heroku
+          api_key: $HEROKU_API
+          app: auth-services-aden
+          on:
+            branch: master
+stages:
+  - name: test
+    if: type = pull_request
+  - name: lint
+    if: type = pull_request AND branch != master
+  - name: deploy
+    if: type = push AND branch = master
+
