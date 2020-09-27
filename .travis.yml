@@ -13,7 +13,7 @@ jobs:
       except:
         - master
     script: npm run lint
-  - if: pull_request && branch = master
+  - if: branch = master
     services:
       - mongodb
       - docker
@@ -21,16 +21,16 @@ jobs:
       apt:
         packages:
           - docker-ce
-    before_install:
-      - sudo systemctl status mongod
+    before_install:t
+    
       - docker-compose build
     branches:
       only:
         - master
     script: npm run test
-deploy:
-  provider: heroku
-  api_key: $HEROKU_API
-  app: auth-services-aden
-  on:
-    branch: master
+    deploy:
+      app: auth-services-aden
+      provider: heroku
+      api_key: $HEROKU_API
+      on:
+        branch: master
