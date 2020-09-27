@@ -7,28 +7,31 @@ cache:
   directories:
     - "node_modules"
   npm: true
+branch:
+  only:
+    master
+services:
+  - mongodb
+  - docker
+addons:
+  apt:
+    packages:
+      - docker-ce
+before_install:
+  - docker-compose build
+branches:
+  only:
+    - master
+script: npm run test
+deploy:
+  app: auth-services-aden
+  provider: heroku
+  api_key: $HEROKU_API
+  on:
+    branch: master
 jobs:
   - if: pull_request && branch != master
     branches:
       except:
         - master
     script: npm run lint
-  services:
-    - mongodb
-    - docker
-  addons:
-    apt:
-      packages:
-        - docker-ce
-  before_install:
-    - docker-compose build
-  branches:
-    only:
-      - master
-  script: npm run test
-  deploy:
-    app: auth-services-aden
-    provider: heroku
-    api_key: $HEROKU_API
-    on:
-      branch: master
