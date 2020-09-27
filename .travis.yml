@@ -3,32 +3,20 @@ language: node_js
 dist: xenial
 node_js:
   - 12
-
 cache:
   directories:
     - "node_modules"
   npm: true
-
 services:
   - mongodb
   - docker
-
 addons:
   apt:
     packages:
       - docker-ce
-
 before_install:
   - docker-compose build
 script: npm run test
-
-# jobs:
-#   - if: pull_request && branch != master
-#     branches:
-#       except:
-#         - master
-#     script: npm run lint
-    
 deploy:
   app: auth-services-aden
   provider: heroku
