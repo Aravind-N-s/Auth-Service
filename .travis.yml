@@ -3,32 +3,35 @@ language: node_js
 dist: xenial
 node_js:
   - 12
+
 cache:
   directories:
     - "node_modules"
   npm: true
+
+services:
+  - mongodb
+  - docker
+
+addons:
+  apt:
+    packages:
+      - docker-ce
+
+before_install:
+  - docker-compose build
+script: npm run test
+
+deploy:
+  app: auth-services-aden
+  provider: heroku
+  api_key: $HEROKU_API
+  on:
+    branch: master
+    
 jobs:
-  - if: pull_request
+  - if: pull_request && branch != master
     branches:
       except:
         - master
     script: npm run lint
-  - if: pull_request && branch = master
-    services:
-      - mongodb
-      - docker
-    addons:
-      apt:
-        packages:
-          - docker-ce
-    before_install:
-      - sudo systemctl status mongod
-      - docker-compose build
-    branches:
-      only:
-        - master
-    script: npm run test -- --exit
-    deploy:
-      provider: heroku
-      api_key: $HEROKU_API
-      app: auth-services-aden
