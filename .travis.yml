@@ -9,29 +9,26 @@ cache:
   npm: true
 jobs:
   include:
-    stage: lint
-    script:
-      - npm run lint
-    stage: test
-    script:
-      - npm run test -- --exit
-    stage: deploy
-    script:
-      - services:
+    - stage: lint
+      script:
+        - npm run lint
+    - stage: deploy
+      services:
         - mongodb
         - docker
-      - addons:
+      addons:
         apt:
           packages:
             - docker-ce
-      - npm run test -- --exit
-      - deploy:
+      script:
+        - npm run test -- --exit
+      deploy:
           provider: heroku
           api_key: $HEROKU_API
           app: auth-services-aden
+          on:
+            branch: master
 stages:
-  - name: test
-    if: type = pull_request
   - name: lint
     if: type = pull_request AND branch != master
   - name: deploy
