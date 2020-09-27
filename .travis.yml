@@ -13,7 +13,7 @@ jobs:
       except:
         - master
     script: npm run lint
-  - if: push && branch = master
+  - if: commit
     services:
       - mongodb
       - docker
