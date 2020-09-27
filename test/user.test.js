@@ -9,14 +9,14 @@ describe("Testing Travis", () => {
   it("Print Data", (done) => {
     chai
       .request(server)
-      .get("/test/service")
+      .get("/user/test/service")
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a("object");
         res.body.should.have
           .property("message")
           .eql("!Test Route - AuthService is Up!");
+        done();
       });
-    done();
   });
 });

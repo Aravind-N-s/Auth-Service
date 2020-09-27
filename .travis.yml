@@ -27,7 +27,7 @@ jobs:
     branches:
       only:
         - master
-    script: npm run test -- --exit
+    script: npm run test
     deploy:
       provider: heroku
       api_key: $HEROKU_API

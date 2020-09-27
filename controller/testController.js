@@ -1,5 +1,8 @@
+const HttpStatus = require("http-status-codes");
 module.exports = {
-  test() {
-    console.log("!Test Route - AuthService is Up!");
+  test(req, res) {
+    return res
+      .status(HttpStatus.OK)
+      .json({ message: "!Test Route - AuthService is Up!" });
   },
 };
