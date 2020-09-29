@@ -21,5 +21,5 @@ stages:
   - name: lint
     if: type = pull_request
   - name: deploy
-    if: type = push AND branch = master
+    if: branch = master
 
