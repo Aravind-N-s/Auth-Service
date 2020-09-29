@@ -33,6 +33,4 @@ stages:
     if: type = pull_request
   - name: deploy
     if: branch = master
-  - name: test
-    if: branch = develop
 
