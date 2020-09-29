@@ -15,7 +15,7 @@ describe("Testing Travis", () => {
         res.body.should.be.a("object");
         res.body.should.have
           .property("message")
-          .eql("!Test Route - AuthService is Up!");
+          .eql("-!!Test Route - AuthService is Up!!-");
         done();
       });
   });
