@@ -19,7 +19,7 @@ stages:
     if: type = push
   - name: test
     if: branch != master
-    
+
 jobs:
   include:
     - stage: lint
