@@ -7,18 +7,18 @@ cache:
   directories:
     - "node_modules"
   npm: true
-services:
-  - mongodb
-  - docker
-addons:
-  apt:
-    packages:
-      - docker-ce
 jobs:
   include:
     - stage: lint
       script: npm run lint
     - stage: deploy
+      services:
+        - mongodb
+        - docker
+      addons:
+        apt:
+          packages:
+            - docker-ce
       script: npm run test
       deploy:
           provider: heroku
@@ -26,7 +26,7 @@ jobs:
           app: auth-services-aden
 stages:
   - name: lint
-    if: type = pull_request AND branch != master
-   - name: deploy
-    if: type = push AND branch = master
+    if: type = pull_request
+  - name: deploy
+    if: branch = master
 
