@@ -19,7 +19,7 @@ jobs:
           app: auth-services-aden
 stages:
   - name: lint
-    if: type = pull_request AND branch != master
+    if: type = pull_request
   - name: deploy
     if: type = push AND branch = master
 
