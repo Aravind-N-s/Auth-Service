@@ -7,18 +7,18 @@ cache:
   directories:
     - "node_modules"
   npm: true
-services:
-  - mongodb
-  - docker
-addons:
-  apt:
-    packages:
-      - docker-ce
 jobs:
   include:
     - stage: lint
       script: npm run lint
     - stage: deploy
+      services:
+        - mongodb
+        - docker
+      addons:
+        apt:
+          packages:
+            - docker-ce
       script: npm run test
       deploy:
           provider: heroku
