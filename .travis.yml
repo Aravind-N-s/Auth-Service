@@ -10,7 +10,11 @@ cache:
 jobs:
   include:
     - stage: lint
+      allow_failures:
+        - if: branch != develop
       script: npm run lint
+    - stage: test
+      script: npm run test
     - stage: deploy
       services:
         - mongodb
@@ -29,4 +33,6 @@ stages:
     if: type = pull_request
   - name: deploy
     if: branch = master
+  - name: test
+    if: branch = develop
 
