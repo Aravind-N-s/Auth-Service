@@ -36,7 +36,7 @@ jobs:
         apt:
           packages:
             - docker-ce
-      script: skip
+      script: npm run test
       deploy:
           provider: heroku
           api_key: $HEROKU_API
